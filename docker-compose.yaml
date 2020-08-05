@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  plex:
+    image: plexinc/pms-docker:latest
+    restart: always
+    network_mode: host
+    volumes:
+      - plex-transcode:/transcode
+      - type: bind
+        source: /home/rhea/movie
+        target: /data
+      - plex-config:/config
+    environment:
+      TZ: 'Asia/Dubai'
+      PLEX_CLAIM:
+      ADVERTISE_IP: 'http://plex.test.com:32400/'
+    hostname: plex.text.com
+volumes:
+  plex-transcode:
+  plex-config:
